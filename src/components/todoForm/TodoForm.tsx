@@ -9,14 +9,22 @@ interface TodoFormProps {
 }
 
 const TodoForm: React.FC<TodoFormProps> = ({ initialValue, handleSubmit }) => {
-  const { values, handleSubmit: onSubmit } = useFormik({
+  const { values, handleSubmit: onSubmit, handleChange } = useFormik({
     initialValues: initialValue,
     onSubmit: handleSubmit,
   });
+
+  console.log(values);
   return (
     <Box>
-      <Input style={{ width: "100%" }} placeholder="Write your todo here..." />
-      <Button>Add</Button>
+      <Input
+        autoComplete="off"
+        name="title"
+        id="todo-title"
+        data-testid="todo-title-input"
+        placeholder="Write your todo here..."
+        onChange={handleChange}
+      />
     </Box>
   );
 };
