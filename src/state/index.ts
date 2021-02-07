@@ -1,5 +1,5 @@
 import { combineReducers, configureStore } from "@reduxjs/toolkit";
-import todos from "./todos";
+import todos, { todoAdapter } from "./todos";
 export * from "./todos";
 
 const root = combineReducers({
@@ -11,5 +11,5 @@ const store = configureStore({
 });
 
 export type RootState = ReturnType<typeof store.getState>;
-
+export const todosSelector = todoAdapter.getSelectors((state: RootState) => state.todos);
 export default store;

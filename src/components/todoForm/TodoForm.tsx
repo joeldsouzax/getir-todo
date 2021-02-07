@@ -1,21 +1,23 @@
 import * as React from "react";
 import { Box, Input, Button } from "../design/DesignSystem";
-import { useSpring, animated } from "react-spring";
+import { useFormik } from "formik";
+import { Todo } from "src/types";
 
-const AnimatedBox = animated(Box);
+interface TodoFormProps {
+  initialValue: Omit<Todo, "id">;
+  handleSubmit: (values: Omit<Todo, "id">) => void;
+}
 
-const TodoForm: React.FC = () => {
-  const [isAdding, setIsAdding] = React.useState<boolean>(false);
-  const props = useSpring({});
+const TodoForm: React.FC<TodoFormProps> = ({ initialValue, handleSubmit }) => {
+  const { values, handleSubmit: onSubmit } = useFormik({
+    initialValues: initialValue,
+    onSubmit: handleSubmit,
+  });
   return (
-    <AnimatedBox style={props}>
-      <Input
-        style={{ width: "100%" }}
-        onChange={() => setIsAdding(true)}
-        placeholder="Write your todo here..."
-      />
+    <Box>
+      <Input style={{ width: "100%" }} placeholder="Write your todo here..." />
       <Button>Add</Button>
-    </AnimatedBox>
+    </Box>
   );
 };
 

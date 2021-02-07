@@ -1,7 +1,7 @@
 import { createEntityAdapter, createSlice } from "@reduxjs/toolkit";
 import { Todo } from "../types";
 
-const todoAdapter = createEntityAdapter<Todo>({
+export const todoAdapter = createEntityAdapter<Todo>({
   selectId: ({ id }) => id,
   sortComparer: (a, b) => a.title.localeCompare(b.title),
 });
