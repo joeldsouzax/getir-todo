@@ -1,6 +1,6 @@
 import * as React from "react";
 import { Todo } from "src/types";
-import { Button, Card, Input, Title } from "../design/DesignSystem";
+import { Button, Card, Title } from "../design/DesignSystem";
 
 interface TodoCardProps {
   todo: Todo;
