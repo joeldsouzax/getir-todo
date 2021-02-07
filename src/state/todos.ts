@@ -12,9 +12,10 @@ const todoSlice = createSlice({
   reducers: {
     addTodo: todoAdapter.addOne,
     upsertTodo: todoAdapter.updateOne,
+    updateTodo: todoAdapter.updateOne,
   },
 });
 
 const todoReducer = todoSlice.reducer;
-export const { addTodo, upsertTodo } = todoSlice.actions;
+export const { addTodo, upsertTodo, updateTodo } = todoSlice.actions;
 export default todoReducer;

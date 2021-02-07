@@ -85,7 +85,8 @@ export const Card = styled.div<CardProps>`
 
 export const Button = styled.button`
   background-color: ${({ theme }) => theme.colorFive.main};
-  padding: 10px;
+  padding: 20px;
+  font-size: 28px;
   border: 0.5px;
   border-radius: 6px;
   outline: none !important;
