@@ -6,7 +6,7 @@ const Home: React.FC = () => {
   return (
     <React.Fragment>
       <Header>
-        <Title>Todo</Title>
+        <Title>Todo ✍️</Title>
       </Header>
       <Content>
         <Todo />

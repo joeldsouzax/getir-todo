@@ -35,7 +35,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ initialValue, handleSubmit }) => {
                   name="title"
                   id="title"
                   data-testid="todo-title-input"
-                  placeholder="type here..."
+                  placeholder="task..."
                   onChange={field.onChange}
                 />
               </React.Fragment>

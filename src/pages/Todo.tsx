@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TodoForm, TodoView } from "components";
+import { Title, TodoForm, TodoView } from "components";
 import { useSelector, useDispatch } from "react-redux";
 import { addTodo, todosSelector } from "state";
 import { nanoid } from "@reduxjs/toolkit";
@@ -13,13 +13,20 @@ const Todo: React.FC = React.memo(() => {
     (value: Omit<TodoType, "id">) => {
       dispatch(addTodo({ id: nanoid(), ...value }));
     },
-    [dispatch]
+    [dispatch, todos]
   );
 
   return (
     <React.Fragment>
       <TodoForm initialValue={{ title: "", status: "incomplete" }} handleSubmit={handleTodoAdd} />
-      <TodoView todos={todos} />
+      {todos.length > 0 ? (
+        <TodoView todos={todos} />
+      ) : (
+        <React.Fragment>
+          <Title>Type your task and press enter</Title>
+          <h1 style={{ fontSize: 40, marginTop: 0, paddingTop: 0 }}>⌨️📔💻🖊️</h1>
+        </React.Fragment>
+      )}
     </React.Fragment>
   );
 });
