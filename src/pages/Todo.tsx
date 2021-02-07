@@ -19,7 +19,7 @@ const Todo: React.FC = () => {
   return (
     <React.Fragment>
       <TodoForm
-        initialValue={{ title: "", description: "", status: "incomplete" }}
+        initialValue={{ title: "", status: "incomplete" }}
         handleSubmit={(value) => dispatch(addTodo({ id: nanoid(), ...value }))}
       />
       {trail.map(({ x, height, ...rest }, index) => (

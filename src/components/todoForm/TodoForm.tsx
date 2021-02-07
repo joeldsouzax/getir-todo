@@ -1,6 +1,6 @@
 import * as React from "react";
-import { Box, Input, Button } from "../design/DesignSystem";
-import { useFormik } from "formik";
+import { Input } from "../design/DesignSystem";
+import { Field, Form, Formik, FieldProps } from "formik";
 import { Todo } from "src/types";
 
 interface TodoFormProps {
@@ -9,23 +9,34 @@ interface TodoFormProps {
 }
 
 const TodoForm: React.FC<TodoFormProps> = ({ initialValue, handleSubmit }) => {
-  const { values, handleSubmit: onSubmit, handleChange } = useFormik({
-    initialValues: initialValue,
-    onSubmit: handleSubmit,
-  });
-
-  console.log(values);
   return (
-    <Box>
-      <Input
-        autoComplete="off"
-        name="title"
-        id="todo-title"
-        data-testid="todo-title-input"
-        placeholder="Write your todo here..."
-        onChange={handleChange}
-      />
-    </Box>
+    <Formik
+      initialValues={initialValue}
+      onSubmit={(values, { resetForm }) => {
+        resetForm();
+        handleSubmit(values);
+      }}
+      enableReinitialize={true}
+    >
+      <Form>
+        <Field name="title">
+          {({ field, form, meta }: FieldProps) => {
+            return (
+              <Input
+                width="500px"
+                value={field.value}
+                autoComplete="off"
+                name="title"
+                id="title"
+                data-testid="todo-title-input"
+                placeholder="type here..."
+                onChange={field.onChange}
+              />
+            );
+          }}
+        </Field>
+      </Form>
+    </Formik>
   );
 };
 

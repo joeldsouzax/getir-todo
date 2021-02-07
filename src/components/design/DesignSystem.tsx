@@ -88,9 +88,45 @@ export const Button = styled.button`
   border-radius: 6px;
   outline: none !important;
   color: ${({ theme }) => theme.colorFive.text};
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  &:active {
+    background-color: ${({ theme }) => theme.colorFour.main};
+  }
 `;
 
-export const Input = styled.input`
+interface InputProps {
+  width: string;
+}
+
+export const Input = styled.input<InputProps>`
+  font-size: 28px;
+  padding: 5px;
+  height: 50px;
+  margin: 5px;
+  background: ${({ theme }) => theme.default.main};
+  border: none;
+  width: ${({ width }) => width};
+  border-radius: 5px;
+  ::placeholder {
+    color: ${({ theme }) => theme.colorFive.main};
+  }
+`;
+
+interface BoxProps {
+  width: string;
+}
+
+export const Box = styled.div<BoxProps>`
+  display: flex;
+  padding: 10px;
+  flex-direction: column;
+  margin: 5px;
+  width: ${({ width }) => width};
+  border-radius: 5px;
+  border: 1px solid ${({ theme }) => theme.colorFour.main};
+`;
+
+export const TextArea = styled.textarea`
   font-size: 18px;
   padding: 10px;
   margin: 10px;
@@ -100,14 +136,6 @@ export const Input = styled.input`
   ::placeholder {
     color: ${({ theme }) => theme.colorFive.main};
   }
-`;
-
-export const Box = styled.div`
-  display: flex;
-  padding: 10px;
-  flex-direction: row;
-  margin: 5px;
-  border-radius: 5px;
 `;
 
 export const Title = styled.h2``;
