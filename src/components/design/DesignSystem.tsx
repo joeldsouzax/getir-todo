@@ -33,7 +33,7 @@ export const styled = baseStyled as ThemedStyledInterface<Theme>;
 export const GlobalStyle = createGlobalStyle`
   body {
     font-family: 'Roboto';
-    background-color: "#F5F8FA";
+    background-color: #F5F8FA;
   }
 `;
 
@@ -55,9 +55,26 @@ export const Header = styled.div`
 export const Content = styled.div`
   padding: 10px;
   margin: 10px;
-  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   color: ${(props) => props.theme.default.text};
   border-radius: 5px;
+`;
+
+interface CardProps {
+  width: string;
+}
+
+export const Card = styled.div<CardProps>`
+  border-radius: 5px;
+  margin: 6px;
+  width: ${({ width }) => width};
+  display: flex;
+  flex-direction: column;
+  color: inherit;
+  background-color: #ffffff;
 `;
 
 export const Title = styled.h2``;

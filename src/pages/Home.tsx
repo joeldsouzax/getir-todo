@@ -1,5 +1,6 @@
 import * as React from "react";
 import { Content, Header, Title } from "components";
+import Todo from "./Todo";
 
 const Home: React.FC = () => {
   return (
@@ -8,7 +9,7 @@ const Home: React.FC = () => {
         <Title>Todo</Title>
       </Header>
       <Content>
-        <h1>Hello</h1>
+        <Todo />
       </Content>
     </React.Fragment>
   );
