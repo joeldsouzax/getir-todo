@@ -11,7 +11,7 @@ const Todo: React.FC = () => {
   const trail = useTrail(todos.length, {
     config: { mass: 5, tension: 2000, friction: 200 },
     opacity: 1,
-    x: 0,
+    x: 10,
     height: 110,
     from: { opacity: 0, x: 20, height: 0 },
   });
@@ -28,7 +28,7 @@ const Todo: React.FC = () => {
           className="todos-trail"
           style={{ ...rest, transform: x.interpolate((x) => `translate3d(0,${x}px,0)`) }}
         >
-          <TodoCard style={{ height: String(height) }} todo={todos[index]} />
+          <TodoCard todo={todos[index]} />
         </animated.div>
       ))}
     </React.Fragment>

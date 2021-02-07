@@ -70,9 +70,12 @@ interface CardProps {
 export const Card = styled.div<CardProps>`
   border-radius: 5px;
   margin: 6px;
+  padding: 10px;
   width: ${({ width }) => width};
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
   color: inherit;
   background-color: #ffffff;
   &:hover {
@@ -83,7 +86,6 @@ export const Card = styled.div<CardProps>`
 export const Button = styled.button`
   background-color: ${({ theme }) => theme.colorFive.main};
   padding: 10px;
-  margin: 1em;
   border: 0.5px;
   border-radius: 6px;
   outline: none !important;
@@ -100,9 +102,7 @@ interface InputProps {
 
 export const Input = styled.input<InputProps>`
   font-size: 28px;
-  padding: 5px;
-  height: 50px;
-  margin: 5px;
+  height: 60px;
   background: ${({ theme }) => theme.default.main};
   border: none;
   width: ${({ width }) => width};
@@ -139,3 +139,6 @@ export const TextArea = styled.textarea`
 `;
 
 export const Title = styled.h2``;
+export const ErrorText = styled.p`
+  color: red;
+`;

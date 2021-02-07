@@ -1,6 +1,7 @@
 import * as React from "react";
-import { Input } from "../design/DesignSystem";
+import { ErrorText, Input } from "../design/DesignSystem";
 import { Field, Form, Formik, FieldProps } from "formik";
+import * as yup from "yup";
 import { Todo } from "src/types";
 
 interface TodoFormProps {
@@ -12,6 +13,9 @@ const TodoForm: React.FC<TodoFormProps> = ({ initialValue, handleSubmit }) => {
   return (
     <Formik
       initialValues={initialValue}
+      validationSchema={yup.object().shape({
+        title: yup.string().min(3, "task is too short").required("required!"),
+      })}
       onSubmit={(values, { resetForm }) => {
         resetForm();
         handleSubmit(values);
@@ -22,16 +26,19 @@ const TodoForm: React.FC<TodoFormProps> = ({ initialValue, handleSubmit }) => {
         <Field name="title">
           {({ field, form, meta }: FieldProps) => {
             return (
-              <Input
-                width="500px"
-                value={field.value}
-                autoComplete="off"
-                name="title"
-                id="title"
-                data-testid="todo-title-input"
-                placeholder="type here..."
-                onChange={field.onChange}
-              />
+              <React.Fragment>
+                <ErrorText>{meta.error && meta.touched ? meta.error : ""}</ErrorText>
+                <Input
+                  width="500px"
+                  value={field.value}
+                  autoComplete="off"
+                  name="title"
+                  id="title"
+                  data-testid="todo-title-input"
+                  placeholder="type here..."
+                  onChange={field.onChange}
+                />
+              </React.Fragment>
             );
           }}
         </Field>

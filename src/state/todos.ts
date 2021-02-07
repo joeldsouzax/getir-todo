@@ -17,5 +17,4 @@ const todoSlice = createSlice({
 
 const todoReducer = todoSlice.reducer;
 export const { addTodo, upsertTodo } = todoSlice.actions;
-
 export default todoReducer;
