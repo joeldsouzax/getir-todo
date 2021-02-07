@@ -1,5 +1,5 @@
 import * as React from "react";
-import { TodoCard } from "components";
+import { Button, TodoCard, TodoForm } from "components";
 import { useTrail, animated } from "react-spring";
 
 const Todo: React.FC = () => {
@@ -21,13 +21,14 @@ const Todo: React.FC = () => {
 
   return (
     <React.Fragment>
+      <TodoForm />
       {trail.map(({ x, height, ...rest }, index) => (
         <animated.div
           key={todos[index]}
           className="todos-trail"
           style={{ ...rest, transform: x.interpolate((x) => `translate3d(0,${x}px,0)`) }}
         >
-          <TodoCard style={{ height: String(height) }}>{todos[index]}</TodoCard>
+          <TodoCard style={{ height: String(height) }} title={todos[index]} />
         </animated.div>
       ))}
     </React.Fragment>

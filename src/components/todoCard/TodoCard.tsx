@@ -1,15 +1,15 @@
 import * as React from "react";
-import { Card, Title } from "../design/DesignSystem";
+import { Card, Input, Title } from "../design/DesignSystem";
 
 interface TodoCardProps {
-  children: React.ReactNode;
+  title: string;
   style?: React.CSSProperties;
 }
 
-const TodoCard: React.FC<TodoCardProps> = ({ children, style }) => {
+const TodoCard: React.FC<TodoCardProps> = ({ title, style }) => {
   return (
     <Card style={style} width="400px">
-      <Title>{children}</Title>
+      <Input placeholder="Write your todo" />
     </Card>
   );
 };

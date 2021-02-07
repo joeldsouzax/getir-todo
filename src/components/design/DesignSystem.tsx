@@ -75,6 +75,39 @@ export const Card = styled.div<CardProps>`
   flex-direction: column;
   color: inherit;
   background-color: #ffffff;
+  &:hover {
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  }
+`;
+
+export const Button = styled.button`
+  background-color: ${({ theme }) => theme.colorFive.main};
+  padding: 10px;
+  margin: 1em;
+  border: 0.5px;
+  border-radius: 6px;
+  outline: none !important;
+  color: ${({ theme }) => theme.colorFive.text};
+`;
+
+export const Input = styled.input`
+  font-size: 18px;
+  padding: 10px;
+  margin: 10px;
+  background: ${({ theme }) => theme.default.main};
+  border: none;
+  border-radius: 5px;
+  ::placeholder {
+    color: ${({ theme }) => theme.colorFive.main};
+  }
+`;
+
+export const Box = styled.div`
+  display: flex;
+  padding: 10px;
+  flex-direction: row;
+  margin: 5px;
+  border-radius: 5px;
 `;
 
 export const Title = styled.h2``;
