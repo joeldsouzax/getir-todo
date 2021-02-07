@@ -1,4 +1,4 @@
-import { faClipboardCheck } from "@fortawesome/free-solid-svg-icons";
+import { faSquare, faCheckSquare } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import * as React from "react";
 import { useDispatch } from "react-redux";
@@ -18,7 +18,7 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
       <Button
         onClick={() => dispatch(updateTodo({ id: todo.id, changes: { status: "complete" } }))}
       >
-        <FontAwesomeIcon icon={faClipboardCheck} />
+        <FontAwesomeIcon icon={todo.status === "incomplete" ? faSquare : faCheckSquare} />
       </Button>
     </Card>
   );

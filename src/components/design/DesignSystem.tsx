@@ -84,16 +84,15 @@ export const Card = styled.div<CardProps>`
 `;
 
 export const Button = styled.button`
-  background-color: ${({ theme }) => theme.colorFive.main};
-  padding: 20px;
+  background-color: transparent;
   font-size: 28px;
   border: 0.5px;
-  border-radius: 6px;
+  height: 60px;
+  width: 60px;
+  border-radius: 50%;
   outline: none !important;
-  color: ${({ theme }) => theme.colorFive.text};
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+  color: inherit;
   &:active {
-    background-color: ${({ theme }) => theme.colorFour.main};
   }
 `;
 
@@ -139,7 +138,9 @@ export const TextArea = styled.textarea`
   }
 `;
 
-export const Title = styled.h2``;
+export const Title = styled.h2`
+  font-weight: normal;
+`;
 export const ErrorText = styled.p`
   color: red;
 `;
