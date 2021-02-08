@@ -12,18 +12,22 @@ const todoSlice = createSlice({
   initialState: initialValue,
   reducers: {
     addTodo: (state, action: PayloadAction<Todo>) => {
+      state.loading = false;
       state.todos.push(action.payload);
     },
     getTodos: (state, action: PayloadAction<Array<Todo>>) => {
+      state.loading = false;
       state.todos = action.payload;
     },
     deleteTodos: (state, action: PayloadAction<string>) => {
+      state.loading = false;
       state.todos.splice(
         state.todos.findIndex((todo) => todo.id === action.payload),
         1
       );
     },
     updateTodos: (state, action: PayloadAction<Todo>) => {
+      state.loading = false;
       const todo = state.todos.find((todo) => todo.id === action.payload.id);
       if (todo) {
         todo.completed = action.payload.completed;
