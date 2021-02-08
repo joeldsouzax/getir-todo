@@ -24,14 +24,10 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
       .then((data) => dispatch(deleteTodos(id)));
   };
 
-  const handleUpdate = () => {
-    functor({ id: todo.id, body: { completed: true } })
-      .map((data) => {
-        dispatch(load(true));
-        return data;
-      })
-      .chain((v) => updateTodo(v))
-      .then((data) => updateTodos(data));
+  const handleUpdate = async () => {
+    dispatch(load(true));
+    const response = await updateTodo({ id: todo.id, body: { ...todo, completed: true } });
+    dispatch(updateTodos(response));
   };
 
   React.useEffect(() => {
