@@ -1,24 +1,29 @@
 import * as React from "react";
 import { Title, TodoForm, TodoView } from "components";
-import { useSelector, useDispatch } from "react-redux";
-import { addTodo, todosSelector } from "state";
-import { nanoid } from "@reduxjs/toolkit";
+import { useSelector } from "react-redux";
+import { createNewTodo, todosSelector, fetchAllTodos, useAppDispatch } from "state";
 import { Todo as TodoType } from "types";
 
 const Todo: React.FC = React.memo(() => {
   const todos = useSelector(todosSelector.selectAll);
-  const dispatch = useDispatch();
+  const dispatch = useAppDispatch();
+
+  console.log(todos);
 
   const handleTodoAdd = React.useCallback(
-    (value: Omit<TodoType, "id">) => {
-      dispatch(addTodo({ id: nanoid(), ...value }));
+    (value: Pick<TodoType, "title" | "complete">) => {
+      dispatch(createNewTodo({ order: todos.length + 1, ...value }));
     },
     [dispatch, todos]
   );
 
+  React.useEffect(() => {
+    dispatch(fetchAllTodos());
+  }, []);
+
   return (
     <React.Fragment>
-      <TodoForm initialValue={{ title: "", status: "incomplete" }} handleSubmit={handleTodoAdd} />
+      <TodoForm initialValue={{ title: "", complete: false }} handleSubmit={handleTodoAdd} />
 
       {todos.length > 0 ? (
         <React.Fragment>

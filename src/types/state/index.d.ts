@@ -2,8 +2,10 @@ export type TodoStatus = "complete" | "incomplete";
 
 export interface Todo {
   id: string;
+  url: string;
+  order: number;
   title: string;
-  status: TodoStatus;
+  complete: boolean;
 }
 
 export type Todos = Array<Todo>;

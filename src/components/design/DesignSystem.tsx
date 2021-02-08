@@ -102,6 +102,10 @@ interface InputProps {
 
 export const Input = styled.input<InputProps>`
   font-size: 28px;
+  box-sizing: border-box;
+  color: ${({ theme }) => theme.colorFive.main};
+  padding-left: 20px;
+  caret-color: ${({ theme }) => theme.colorFive.main};
   height: 60px;
   background: ${({ theme }) => theme.default.main};
   border: none;
