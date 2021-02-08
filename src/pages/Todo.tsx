@@ -8,8 +8,6 @@ const Todo: React.FC = React.memo(() => {
   const todos = useSelector(todosSelector.selectAll);
   const dispatch = useAppDispatch();
 
-  console.log(todos);
-
   const handleTodoAdd = React.useCallback(
     (value: Pick<TodoType, "title" | "complete">) => {
       dispatch(createNewTodo({ order: todos.length + 1, ...value }));

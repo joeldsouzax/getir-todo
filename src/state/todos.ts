@@ -44,22 +44,10 @@ export const todoAdapter = createEntityAdapter<Todo>({
 
 const todoSlice = createSlice({
   name: "todo",
-  initialState: todoAdapter.getInitialState({ loading: "idle", error: null }),
-  reducers: {
-    [createNewTodo.pending.toString()]: (state, action) => {
-      state.loading = "loading";
-    },
-    [createNewTodo.rejected.toString()]: (state, action) => {
-      state.error = action.payload.errorMessage;
-    },
-    [createNewTodo.fulfilled.toString()]: (state, action) => {
-      state.loading = "idle";
-      state.error = null;
-      todoAdapter.addOne(state, action);
-    },
-    [fetchAllTodos.fulfilled.toString()]: (state, action) => {
-      console.log(action);
-    },
+  initialState: todoAdapter.getInitialState(),
+  reducers: {},
+  extraReducers: {
+    [fetchAllTodos.fulfilled.toString()]: todoAdapter.addMany,
   },
 });
 

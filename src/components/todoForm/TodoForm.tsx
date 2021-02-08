@@ -29,7 +29,7 @@ const TodoForm: React.FC<TodoFormProps> = ({ initialValue, handleSubmit }) => {
               <React.Fragment>
                 <ErrorText>{meta.error && meta.touched ? meta.error : ""}</ErrorText>
                 <Input
-                  width="500px"
+                  width="100%"
                   value={field.value}
                   autoComplete="off"
                   name="title"
