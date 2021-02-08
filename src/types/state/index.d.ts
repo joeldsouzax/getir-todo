@@ -5,7 +5,7 @@ export interface Todo {
   url: string;
   order: number;
   title: string;
-  complete: boolean;
+  completed: boolean;
 }
 
 export type Todos = Array<Todo>;

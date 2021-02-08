@@ -1,56 +1,37 @@
-import { createEntityAdapter, createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { createTodo, getTodos } from "api";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Todo } from "../types";
 
-export const fetchAllTodos = createAsyncThunk<Array<Todo>>("todos/fetchAll", async () => {
-  const response = await getTodos();
-  return response;
-});
-
-export const createNewTodo = createAsyncThunk<
-  Todo,
-  Pick<Todo, "title" | "complete" | "order">,
-  { rejectValue: string }
->("todos/create", async (todo, { rejectWithValue }) => {
-  try {
-    const response = await createTodo(todo);
-    return response;
-  } catch (err) {
-    return rejectWithValue("cannot add new todo");
-  }
-});
-
-export const updateTodo = createAsyncThunk<Todo, Pick<Todo, "title" | "complete">>(
-  "todos/update",
-  async (todo, { rejectWithValue }) => {
-    try {
-      const response = await createTodo(todo);
-      return response;
-    } catch (err) {
-      return rejectWithValue("cannot add new todo");
-    }
-  }
-);
-
-export const deleteTodo = createAsyncThunk<Todo, Pick<Todo, "id">>("todos/delete", async (todo) => {
-  const response = await createTodo(todo);
-  return response;
-});
-
-export const todoAdapter = createEntityAdapter<Todo>({
-  selectId: ({ id }) => id,
-  sortComparer: (a, b) => a.title.localeCompare(b.title),
-});
+const initialValue = {
+  todos: [] as Array<Todo>,
+  loading: "idle",
+  error: null as string | null,
+};
 
 const todoSlice = createSlice({
-  name: "todo",
-  initialState: todoAdapter.getInitialState(),
-  reducers: {},
-  extraReducers: {
-    [fetchAllTodos.fulfilled.toString()]: todoAdapter.addMany,
+  name: "todos",
+  initialState: [] as Array<Todo>,
+  reducers: {
+    addTodo: (state, action: PayloadAction<Todo>) => {
+      state.push(action.payload);
+    },
+    getTodos: (state, action: PayloadAction<Array<Todo>>) => {
+      return action.payload;
+    },
+    deleteTodos: (state, action: PayloadAction<string>) => {
+      state.splice(
+        state.findIndex((todo) => todo.id === action.payload),
+        1
+      );
+    },
+    updateTodos: (state, action: PayloadAction<Todo>) => {
+      const todo = state.find((todo) => todo.id === action.payload.id);
+      if (todo) {
+        todo.completed = action.payload.completed;
+      }
+    },
   },
 });
 
 const todoReducer = todoSlice.reducer;
-
+export const { addTodo, getTodos, deleteTodos, updateTodos } = todoSlice.actions;
 export default todoReducer;

@@ -5,8 +5,8 @@ import * as yup from "yup";
 import { Todo } from "src/types";
 
 interface TodoFormProps {
-  initialValue: Pick<Todo, "title" | "complete">;
-  handleSubmit: (values: Pick<Todo, "title" | "complete">) => void;
+  initialValue: Pick<Todo, "title" | "completed">;
+  handleSubmit: (values: Pick<Todo, "title" | "completed">) => void;
 }
 
 const TodoForm: React.FC<TodoFormProps> = ({ initialValue, handleSubmit }) => {

@@ -1,4 +1,5 @@
 import baseStyled, { ThemedStyledInterface, createGlobalStyle } from "styled-components";
+import breakpoints from "./size";
 
 export const theme = {
   colorOne: {
@@ -53,34 +54,25 @@ export const Header = styled.div`
 `;
 
 export const Content = styled.div`
-  padding: 10px;
-  margin: 10px;
-  display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
+  display: flex;
   color: ${(props) => props.theme.default.text};
   border-radius: 5px;
 `;
 
-interface CardProps {
-  width: string;
-}
-
-export const Card = styled.div<CardProps>`
+export const Card = styled.div`
   border-radius: 5px;
-  margin: 6px;
-  padding: 10px;
-  width: ${({ width }) => width};
+  padding-bottom: 5px;
+  padding-left: 20px;
+  padding-right: 20px;
+  width: 600px;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
   color: inherit;
   background-color: #ffffff;
-  &:hover {
-    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-  }
 `;
 
 export const Button = styled.button`
@@ -96,12 +88,9 @@ export const Button = styled.button`
   }
 `;
 
-interface InputProps {
-  width: string;
-}
-
-export const Input = styled.input<InputProps>`
+export const Input = styled.input`
   font-size: 28px;
+  width: 600px;
   box-sizing: border-box;
   color: ${({ theme }) => theme.colorFive.main};
   padding-left: 20px;
@@ -109,7 +98,6 @@ export const Input = styled.input<InputProps>`
   height: 60px;
   background: ${({ theme }) => theme.default.main};
   border: none;
-  width: ${({ width }) => width};
   border-radius: 5px;
   ::placeholder {
     color: ${({ theme }) => theme.colorFive.main};
@@ -145,6 +133,11 @@ export const TextArea = styled.textarea`
 export const Title = styled.h2`
   font-weight: normal;
 `;
+
+export const TaskTitle = styled.h3`
+  font-weight: 300;
+`;
+
 export const ErrorText = styled.p`
   color: red;
 `;
