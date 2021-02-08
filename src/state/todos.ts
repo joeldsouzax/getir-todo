@@ -3,35 +3,38 @@ import { Todo } from "../types";
 
 const initialValue = {
   todos: [] as Array<Todo>,
-  loading: "idle",
+  loading: false,
   error: null as string | null,
 };
 
 const todoSlice = createSlice({
   name: "todos",
-  initialState: [] as Array<Todo>,
+  initialState: initialValue,
   reducers: {
     addTodo: (state, action: PayloadAction<Todo>) => {
-      state.push(action.payload);
+      state.todos.push(action.payload);
     },
     getTodos: (state, action: PayloadAction<Array<Todo>>) => {
-      return action.payload;
+      state.todos = action.payload;
     },
     deleteTodos: (state, action: PayloadAction<string>) => {
-      state.splice(
-        state.findIndex((todo) => todo.id === action.payload),
+      state.todos.splice(
+        state.todos.findIndex((todo) => todo.id === action.payload),
         1
       );
     },
     updateTodos: (state, action: PayloadAction<Todo>) => {
-      const todo = state.find((todo) => todo.id === action.payload.id);
+      const todo = state.todos.find((todo) => todo.id === action.payload.id);
       if (todo) {
         todo.completed = action.payload.completed;
       }
+    },
+    load: (state, action: PayloadAction<boolean>) => {
+      state.loading = action.payload;
     },
   },
 });
 
 const todoReducer = todoSlice.reducer;
-export const { addTodo, getTodos, deleteTodos, updateTodos } = todoSlice.actions;
+export const { addTodo, getTodos, deleteTodos, updateTodos, load } = todoSlice.actions;
 export default todoReducer;

@@ -10,7 +10,7 @@ const TodoView: React.FC<TodoViewProps> = ({ todos }) => {
   return (
     <React.Fragment>
       {todos.map((todo) => (
-        <TodoCard todo={todo} />
+        <TodoCard key={todo.id} todo={todo} />
       ))}
     </React.Fragment>
   );

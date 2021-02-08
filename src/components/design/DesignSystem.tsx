@@ -1,5 +1,4 @@
-import baseStyled, { ThemedStyledInterface, createGlobalStyle } from "styled-components";
-import breakpoints from "./size";
+import baseStyled, { ThemedStyledInterface, createGlobalStyle, keyframes } from "styled-components";
 
 export const theme = {
   colorOne: {
@@ -107,6 +106,30 @@ export const Input = styled.input`
 interface BoxProps {
   width: string;
 }
+
+const rotate360 = keyframes`
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+`;
+
+export const Spinner = styled.div`
+  animation: ${rotate360} 1s linear infinite;
+  transform: translateZ(0);
+
+  border-top: 2px solid ${({ theme }) => theme.colorFive.main};
+  border-right: 2px solid ${({ theme }) => theme.colorFive.main};
+  border-bottom: 2px solid ${({ theme }) => theme.colorFive.main};
+  border-left: 4px solid ${({ theme }) => theme.colorFour.main};
+  background: transparent;
+  width: 24px;
+  filter: blur(1px);
+  height: 24px;
+  border-radius: 50%;
+`;
 
 export const Box = styled.div<BoxProps>`
   display: flex;
