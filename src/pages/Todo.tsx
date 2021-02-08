@@ -31,7 +31,19 @@ const Todo: React.FC = () => {
   return (
     <React.Fragment>
       <TodoForm initialValue={{ title: "", completed: false }} handleSubmit={handleTodoAdd} />
-      {loading && <Spinner />}
+      {loading && (
+        <Spinner
+          style={{
+            zIndex: 1000,
+            position: "absolute",
+            margin: "auto",
+            left: 0,
+            right: 0,
+            bottom: 0,
+            top: 0,
+          }}
+        />
+      )}
       {todos.length > 0 ? (
         <React.Fragment>
           <Title>Type your task and press enter</Title>

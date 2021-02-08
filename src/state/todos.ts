@@ -28,6 +28,10 @@ const todoSlice = createSlice({
     },
     updateTodos: (state, action: PayloadAction<Todo>) => {
       state.loading = false;
+      const todo = state.todos.find((todo) => todo.id === action.payload.id);
+      if (todo) {
+        todo.completed = true;
+      }
     },
     load: (state, action: PayloadAction<boolean>) => {
       state.loading = action.payload;
