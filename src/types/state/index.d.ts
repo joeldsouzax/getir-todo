@@ -1,4 +1,4 @@
-export type TodoStatus = "complete" | "incomplete";
+export type Visibility = "all" | "completed" | "incomplete";
 
 export interface Todo {
   id: string;
