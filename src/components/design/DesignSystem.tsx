@@ -84,6 +84,24 @@ export const Button = styled.button`
   outline: none !important;
   color: inherit;
   &:active {
+    color: ${({ theme }) => theme.colorFive.main};
+  }
+`;
+
+export const LinkButton = styled.button`
+  background-color: ${({ theme }) => theme.colorOne.main};
+  font-size: 12px;
+  border: 0.5px;
+  padding: 10px;
+  margin: 4px;
+  border-radius: 6px;
+  outline: none !important;
+  box-shadow: 0 0 10px grey;
+  color: ${({ theme }) => theme.colorFive.main};
+  &:active {
+    background-color: ${({ theme }) => theme.colorFour.main};
+    color: ${({ theme }) => theme.colorFive.text};
+    box-shadow: 0px 0px 0px;
   }
 `;
 

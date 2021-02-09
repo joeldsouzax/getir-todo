@@ -44,17 +44,8 @@ const Todo: React.FC = () => {
           }}
         />
       )}
-      {todos.length > 0 ? (
-        <React.Fragment>
-          <Title>Type your task and press enter</Title>
-          <TodoView todos={todos} />
-        </React.Fragment>
-      ) : (
-        <React.Fragment>
-          <Title>Type your task and press enter</Title>
-          <h1 style={{ fontSize: 40, marginTop: 0, paddingTop: 0 }}>⌨️💻🖊️</h1>
-        </React.Fragment>
-      )}
+      <Title>Type your task and press enter</Title>
+      <TodoView todos={todos} />
     </React.Fragment>
   );
 };

@@ -35,16 +35,15 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
   }, [todo]);
   return (
     <Card>
-      {!todo.completed && (
-        <Button onClick={() => handleUpdate()}>
-          <FontAwesomeIcon
-            style={{
-              color: "green",
-            }}
-            icon={faCheck}
-          />
-        </Button>
-      )}
+      <Button onClick={() => handleUpdate()}>
+        <FontAwesomeIcon
+          style={{
+            color: "green",
+            visibility: todo.completed ? "hidden" : "visible",
+          }}
+          icon={faCheck}
+        />
+      </Button>
       <TaskTitle>{todo.completed ? <s>{todo.title}</s> : todo.title}</TaskTitle>
       <Button onClick={() => handleDelete(todo.id)}>
         <FontAwesomeIcon style={{ color: "red" }} icon={faTrash} />
