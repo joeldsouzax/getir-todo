@@ -1,10 +1,10 @@
 {
-  "name": "gitir-todo-app",
+  "name": "getir-todo-app",
   "version": "1.0.0",
-  "description": "todo use case for gitir ",
+  "description": "todo use case for getir ",
   "author": "Joel D'Souza <joedso1@gmail.com>",
   "keywords": [
-    "Gitir",
+    "Getir",
     "reseller",
     "react",
     "child"
