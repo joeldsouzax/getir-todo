@@ -4,10 +4,28 @@ import { useAppDispatch, useAppSelector, RootState, addTodo, getTodos, load } fr
 import { Todo as TodoType } from "types";
 import { createTodo, fetchAllTodos } from "api";
 import { functor } from "../libs/functional";
+import { createSelector } from "@reduxjs/toolkit";
+
+const selectVisibleTodos = createSelector(
+  [(state: RootState) => state.todos.todos, (state: RootState) => state.filters],
+  (todos, filter) => {
+    switch (filter) {
+      case "all":
+        return todos;
+      case "completed":
+        return todos.filter((t) => t.completed);
+      case "incomplete":
+        return todos.filter((t) => !t.completed);
+      default:
+        throw new Error("Unknown filter: " + filter);
+    }
+  }
+);
 
 const Todo: React.FC = () => {
   const dispatch = useAppDispatch();
-  const { todos, loading } = useAppSelector((state: RootState) => state.todos);
+  const todos = useAppSelector(selectVisibleTodos);
+  const loading = useAppSelector((state: RootState) => state.todos.loading);
 
   const handleTodoAdd = React.useCallback(
     (value: Pick<TodoType, "title" | "completed">) => {

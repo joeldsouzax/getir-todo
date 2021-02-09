@@ -88,8 +88,13 @@ export const Button = styled.button`
   }
 `;
 
-export const LinkButton = styled.button`
-  background-color: ${({ theme }) => theme.colorOne.main};
+interface LinkButtonProps {
+  disabled: boolean;
+}
+
+export const LinkButton = styled.button<LinkButtonProps>`
+  background-color: ${({ disabled, theme }) =>
+    disabled ? theme.default.main : theme.colorOne.main};
   font-size: 12px;
   border: 0.5px;
   padding: 10px;
@@ -97,6 +102,7 @@ export const LinkButton = styled.button`
   border-radius: 6px;
   outline: none !important;
   box-shadow: 0 0 10px grey;
+  box-shadow: ${({ disabled }) => (disabled ? "0px 0px 2px" : "0 0 10px grey")};
   color: ${({ theme }) => theme.colorFive.main};
   &:active {
     background-color: ${({ theme }) => theme.colorFour.main};
