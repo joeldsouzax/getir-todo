@@ -25,7 +25,10 @@ const selectVisibleTodos = createSelector(
 const Todo: React.FC = () => {
   const dispatch = useAppDispatch();
   const todos = useAppSelector(selectVisibleTodos);
-  const loading = useAppSelector((state: RootState) => state.todos.loading);
+  const { loading, order } = useAppSelector((state: RootState) => ({
+    loading: state.todos.loading,
+    order: state.todos.todos.length > 0 ? state.todos.todos[state.todos.todos.length - 1].order : 0,
+  }));
 
   const handleTodoAdd = React.useCallback(
     (value: Pick<TodoType, "title" | "completed">) => {
@@ -34,10 +37,10 @@ const Todo: React.FC = () => {
           dispatch(load(true));
           return value;
         })
-        .chain((value) => createTodo({ ...value, order: todos.length + 1 }))
+        .chain((value) => createTodo({ ...value, order: order + 1 }))
         .then((data) => dispatch(addTodo(data)));
     },
-    [todos, dispatch]
+    [dispatch, order]
   );
 
   React.useEffect(() => {
