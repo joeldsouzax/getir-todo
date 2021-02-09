@@ -94,7 +94,7 @@ interface LinkButtonProps {
 
 export const LinkButton = styled.button<LinkButtonProps>`
   background-color: ${({ disabled, theme }) =>
-    disabled ? theme.default.main : theme.colorOne.main};
+    disabled ? theme.default.main : theme.default.main};
   font-size: 12px;
   border: 0.5px;
   padding: 10px;
@@ -105,7 +105,7 @@ export const LinkButton = styled.button<LinkButtonProps>`
   box-shadow: ${({ disabled }) => (disabled ? "0px 0px 2px" : "0 0 10px grey")};
   color: ${({ theme }) => theme.colorFive.main};
   &:active {
-    background-color: ${({ theme }) => theme.colorFour.main};
+    background-color: grey;
     color: ${({ theme }) => theme.colorFive.text};
     box-shadow: 0px 0px 0px;
   }

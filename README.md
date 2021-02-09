@@ -1,3 +1,3 @@
 <!-- @format -->
 
-# Gitir Todo Application
+# Getir Todo Application
