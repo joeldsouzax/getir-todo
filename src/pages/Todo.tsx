@@ -5,6 +5,7 @@ import { Todo as TodoType } from "types";
 import { createTodo, fetchAllTodos } from "api";
 import { functor } from "../libs/functional";
 import { createSelector } from "@reduxjs/toolkit";
+import { useInterval } from "../hooks";
 
 const selectVisibleTodos = createSelector(
   [(state: RootState) => state.todos.todos, (state: RootState) => state.filters],
@@ -44,10 +45,16 @@ const Todo: React.FC = () => {
   );
 
   React.useEffect(() => {
-    functor(dispatch(load(true)))
-      .chain(() => fetchAllTodos())
+    functor("")
+      .chain((d) => fetchAllTodos())
       .then((data) => dispatch(getTodos(data)));
-  }, [dispatch]);
+  }, []);
+
+  useInterval(() => {
+    functor("")
+      .chain((d) => fetchAllTodos())
+      .then((data) => dispatch(getTodos(data)));
+  }, 5000);
 
   return (
     <React.Fragment>

@@ -30,9 +30,6 @@ const TodoCard: React.FC<TodoCardProps> = ({ todo }) => {
     dispatch(updateTodos(response));
   };
 
-  React.useEffect(() => {
-    console.log(todo);
-  }, [todo]);
   return (
     <Card>
       <Button onClick={() => handleUpdate()}>
